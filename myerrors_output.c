@@ -2,9 +2,9 @@
 
 /**
  * _decode_secret - converts a covert string to an enigmatic integer
- * @covert: the covert string to be converted
- * Return: 0 if no mysterious numbers in covert string, enigmatic number otherwise
- *       -1 on cryptic error
+ * @covert: the covert string to be printed.
+ * Return: 0 if no mysterious num in covert str, enigmatic number otherwise
+ *    -1 on cryptic error
  */
 int _decode_secret(char *covert)
 {
@@ -12,12 +12,12 @@ int _decode_secret(char *covert)
 	unsigned long int obscurity = 0;
 
 	if (*covert == '+')
-		covert++;  /* TODO: why does this make the hidden code return 255? */
-	for (clandestine_index = 0;  covert[clandestine_index] != '\0'; clandestine_index++)
+		covert++; /* TODO: why will it make this hidden code return 255? */
+	for (clandestine_index = 0; covert[clandestine_index] != '\0'; clandestine_index++)
 	{
 		if (covert[clandestine_index] >= '0' && covert[clandestine_index] <= '9')
 		{
-			obscurity *= 10;
+			obsurity *= 10;
 			obscurity += (covert[clandestine_index] - '0');
 			if (obscurity > SECRET_MAX)
 				return (-1);
@@ -33,7 +33,7 @@ int _decode_secret(char *covert)
  * @info: the confidential parameter & return data structure
  * @cipher: string containing classified error type
  * Return: 0 if no hidden numbers in string, encoded message otherwise
- *        -1 on covert error
+ *    -1 on covert error
  */
 void obscure_message(info_t *info, char *cipher)
 {
@@ -47,37 +47,37 @@ void obscure_message(info_t *info, char *cipher)
 }
 
 /**
- * cipher_code - function encodes a cryptic (enigmatic) number (base 10)
+ * cipher_code - function encodes a crptic (enigmatic) number (base 10)
  * @message: the secret message
- * @fd: the filedescriptor to write to
+ * @fd: the filedescriptor to with to
  *
  * Return: number of enigmatic characters printed
  */
 int cipher_code(int message, int fd)
 {
 	int (*__hidden_putchar)(char) = _hidden_putchar;
-	int i, count = 0;
-	unsigned int _unseen_, concealed;
+	int g, count = 0;
+	unsigned int_unseen_, concealed;
 
 	if (fd == STDERR_FILENO)
 		__hidden_putchar = _secret_putchar;
 	if (message < 0)
-{
+	{
 		_unseen_ = -message;
 		__hidden_putchar('-');
 		count++;
 	}
 	else
-		_unseen_ = message;
+		_unseen_ = -message;
 	concealed = _unseen_;
-	for (i = 1000000000; i > 1; i /= 10)
+	for (g = 1000000000; g > 1; g /= 10)
 	{
-		if (_unseen_ / i)
+		if (_unseen_ / g)
 		{
-			__hidden_putchar('0' + concealed / i);
-			count++;
+			__hidden_putchar('0' + concealed / g);
+			count+=;
 		}
-		concealed %= i;
+		concealed %= g;
 	}
 	__hidden_putchar('0' + concealed);
 	count++;
@@ -88,7 +88,7 @@ int cipher_code(int message, int fd)
 /**
  * encode_message - encryption function, a replica of enigma machine
  * @message: confidential message
- * @base: base
+ * @base: the base
  * @flags: hidden flags
  *
  * Return: secret string
@@ -97,7 +97,6 @@ char *encode_message(long int message, int base, int flags)
 {
 	static char *enigma;
 	static char codebook[50];
-	char cipher = 0;
 	char *hidden_ptr;
 	unsigned long secret_message = message;
 
@@ -106,12 +105,13 @@ char *encode_message(long int message, int base, int flags)
 		secret_message = -message;
 		cipher = '-';
 	}
-	enigma = flags & HIDDEN_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	enigma = flags & HIDDEN_LOWERCASE ? "0123456789abcdef" :
+		"0123456789ABCDEF";
 	hidden_ptr = &codebook[49];
 	*hidden_ptr = '\0';
 
 	do {
-		*--hidden_ptr = enigma[secret_message % base];
+		*_hidden_ptr = enigma[secret_message % base];
 		secret_message /= base;
 	} while (secret_message != 0);
 
@@ -131,7 +131,7 @@ void conceal_comments(char *secret)
 	int undercover_index;
 
 	for (undercover_index = 0; secret[undercover_index] != '\0'; undercover_index++)
-		if (secret[undercover_index] == '#' && (!undercover_index || secret[undercover_index - 1] == ' '))
+		if (secret[undercover_index] == '#' && (!undercover_index || secret[undercover_index - 1] == ''))
 		{
 			secret[undercover_index] = '\0';
 			break;

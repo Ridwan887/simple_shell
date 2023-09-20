@@ -1,4 +1,3 @@
-
 #include "shell.h"
 
 /**
@@ -80,7 +79,6 @@ char *findCommandPath(data_d *data, char *pathStr, char *command)
             if (!pathStr[i])
                 break;
             currentPos = i;
-
         }
         i++;
     }

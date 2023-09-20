@@ -38,7 +38,6 @@ void freeArrayOfStrings(char **strArray)
  * @newSize: Byte size of the new block
  *
  * Return: Pointer to the old block's nameen.
-
  */
 void *reallocateMemory(void *previousPtr, unsigned int oldSize, unsigned int newSize)
 {
