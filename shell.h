@@ -159,10 +159,10 @@ void freeArrayOfStrings(char **strArray);
 int bfree(void **);
 
 /* toem_a_prompt.c */
-Int communicative(data_d *);
+int communicative(data_d *);
 int is_delimiterChars(char, char *);
 int _byte(int);
-Int a_prompt(char *);
+int a_prompt(char *);
 
 /* toem_myerrors_output.c */
 int _decode_secret(char *covert);
@@ -174,7 +174,7 @@ void conceal_comments(char *secret);
 /* toem_*shell_exits.c */
 int exit_shell(data_d*)
 int change_directory(data_d*)
-Int help_command(data_d*)
+int help_command(data_d*)
 
 /* toem_builtin_alias.c */
 int _history_echo(data_d *);
