@@ -181,6 +181,8 @@ int help_command(data_d *);
 /* toem_builtin_alias.c */
 int _history_echo(data_d *);
 int _covert_operation_alias(data_d *);
+int print_secret_alias(list_t *node);
+int set_stealthy_alias(data_d *data, char *str);
 
 /*toem_getLine_inputs.c */
 ssize_t deep_cover(data_d *data, char **buf, size_t *len);

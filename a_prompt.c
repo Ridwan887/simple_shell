@@ -8,16 +8,16 @@
  */
 int communicative(data_d *data)
 {
-	return (isatty(STDIN_FILENO) && data->readfd = 2);
+	return (isatty(STDIN_FILENO) && data->readfd <= 2);
 }
 
 /**
  * is_delimeterChars - checks if character is a delimeter
  * @c: the char to check
- * @delimiterChars: the delimiter characters
+ * @delimeterChars: the delimeter characters
  * Return: 1 if true, 0 if false
  */
-int is_delimeterChars(char c, char *delimiterChars)
+int is_delimeterChars(char c, char *delimeterChars)
 {
 	while (*delimeterChars)
 		if (*delimeterChars++ == c)
@@ -48,7 +48,7 @@ int a_prompt(char *s)
 	int g, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (g = 0; s[g] != '\0' && flag != 2; i++)
+	for (g = 0; s[g] != '\0' && flag != 2; g++)
 	{
 		if (s[g] == '-')
 			sign *= -1;
