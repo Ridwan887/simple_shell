@@ -125,7 +125,7 @@ char *findCommandPath(data_d *data, char *pathStr, char *command);
 /* loophsh.c */
 int loophsh(char **);
 
-/* toem_myerrors_output.c */
+/* toem_errors_output.c */
 void _mysterious_puts(char *string)
 int _secret_putchar(char character);
 int _write_to_fd(char character, int file_descriptor);
@@ -172,9 +172,9 @@ char *encode_message(long int message, int base, int flags);
 void conceal_comments(char *secret);
 
 /* toem_*shell_exits.c */
-int exit_shell(data_d*)
-int change_directory(data_d*)
-int help_command(data_d*)
+int exit_shell(data_d *)
+int change_directory(data_d *)
+int help_command(data_d *)
 
 /* toem_builtin_alias.c */
 int _history_echo(data_d *);
