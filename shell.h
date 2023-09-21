@@ -112,10 +112,10 @@ typedef struct builtin
 
 
 /* toem_shell_core.c */
-int hsh(info_t *info, char **av);
-int find_builtin(info_t *info);
-void find_cmd(info_t *info);
-void fork_cmd(info_t *info);
+int hsh(data_d *data, char **args);
+int find_builtin(data_d *data);
+void find_cmd(data_d *data);
+void fork_cmd(data_d *data);
 
 /* toem_getPath_handling.c */
 int isExecutableCommand(data_d *data, char *path);
@@ -126,10 +126,12 @@ char *findCommandPath(data_d *data, char *pathStr, char *command);
 int loophsh(char **);
 
 /* toem_errors_output.c */
-void _mysterious_puts(char *string)
+void _mysterious_puts(char *string);
 int _secret_putchar(char character);
 int _write_to_fd(char character, int file_descriptor);
 int _print_to_fd(char *string, int file_descriptor);
+
+/* toem_strings_functions.c */
 int str_length(char *str);
 int str_compare(char *str1, char *str2);
 char *starts_with_str(const char *haystack, const char *needle);
@@ -160,21 +162,21 @@ int bfree(void **);
 
 /* toem_a_prompt.c */
 int communicative(data_d *);
-int is_delimiterChars(char, char *);
+int is_delimeterChars(char, char *);
 int _byte(int);
 int a_prompt(char *);
 
 /* toem_myerrors_output.c */
 int _decode_secret(char *covert);
-void obscure_message(info_t *info, char *cipher);
+void obscure_message(data_d *data, char *cipher);
 int cipher_code(int message, int fd);
 char *encode_message(long int message, int base, int flags);
 void conceal_comments(char *secret);
 
 /* toem_*shell_exits.c */
-int exit_shell(data_d *)
-int change_directory(data_d *)
-int help_command(data_d *)
+int exit_shell(data_d *);
+int change_directory_function(data_d *);
+int help_command(data_d *);
 
 /* toem_builtin_alias.c */
 int _history_echo(data_d *);

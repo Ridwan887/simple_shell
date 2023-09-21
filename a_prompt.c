@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * communicative - returns  true if shell is communicative mode
+ * communicative - returns true if it is communicative mode
  * @data: struct address
  *
- * Return:1 if communicative mode, 0 otherwise.
+ * Return: 1 if communicative mode, 0 otherwise.
  */
 int communicative(data_d *data)
 {
@@ -12,15 +12,15 @@ int communicative(data_d *data)
 }
 
 /**
- * is_delimiterChars - checks if character is a delimiter
+ * is_delimeterChars - checks if character is a delimeter
  * @c: the char to check
  * @delimiterChars: the delimiter characters
  * Return: 1 if true, 0 if false
  */
-int is_delimiterChars(char c, char *delimiterChars)
+int is_delimeterChars(char c, char *delimiterChars)
 {
-	while (*delimiterChars)
-		if (*delimiterChars++ == c)
+	while (*delimeterChars)
+		if (*delimeterChars++ == c)
 			return (1);
 	return (0);
 }

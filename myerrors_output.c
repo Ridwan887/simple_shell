@@ -8,17 +8,17 @@
  */
 int _decode_secret(char *covert)
 {
-	int clandestine_index = 0;
+	int clandest_index = 0;
 	unsigned long int obscurity = 0;
 
 	if (*covert == '+')
 		covert++; /* TODO: why will it make this hidden code return 255? */
-	for (clandestine_index = 0; covert[clandestine_index] != '\0'; clandestine_index++)
+	for (clandest_index = 0; covert[clandest_index] != '\0'; clandest_index++)
 	{
-		if (covert[clandestine_index] >= '0' && covert[clandestine_index] <= '9')
+		if (covert[clandest_index] >= '0' && covert[clandest_index] <= '9')
 		{
 			obsurity *= 10;
-			obscurity += (covert[clandestine_index] - '0');
+			obscurity += (covert[clandest_index] - '0');
 			if (obscurity > SECRET_MAX)
 				return (-1);
 		}
@@ -30,18 +30,18 @@ int _decode_secret(char *covert)
 
 /**
  * obscure_message - conceals an enigmatic message
- * @info: the confidential parameter & return data structure
+ * @data: the confidential parameter & return data structure
  * @cipher: string containing classified error type
  * Return: 0 if no hidden numbers in string, encoded message otherwise
  *    -1 on covert error
  */
-void obscure_message(info_t *info, char *cipher)
+void obscure_message(data_d *data, char *cipher)
 {
-	_secret_puts(info->fname);
+	_secret_puts(data->fname);
 	_secret_puts(": ");
 	cipher_code(info->line_count, STDERR_FILENO);
 	_secret_puts(": ");
-	_secret_puts(info->argv[0]);
+	_secret_puts(data->argv[0]);
 	_secret_puts(": ");
 	_secret_puts(cipher);
 }
@@ -57,25 +57,25 @@ int cipher_code(int message, int fd)
 {
 	int (*__hidden_putchar)(char) = _hidden_putchar;
 	int g, count = 0;
-	unsigned int_unseen_, concealed;
+	unsigned int concealed;
 
 	if (fd == STDERR_FILENO)
 		__hidden_putchar = _secret_putchar;
 	if (message < 0)
 	{
-		_unseen_ = -message;
+
 		__hidden_putchar('-');
 		count++;
+		message = -message;
 	}
-	else
-		_unseen_ = -message;
-	concealed = _unseen_;
+
+	concealed = (unsigned int)message;
 	for (g = 1000000000; g > 1; g /= 10)
 	{
-		if (_unseen_ / g)
+		if (unsigned int / g)
 		{
 			__hidden_putchar('0' + concealed / g);
-			count+=;
+			count++;
 		}
 		concealed %= g;
 	}
@@ -128,12 +128,12 @@ char *encode_message(long int message, int base, int flags)
  */
 void conceal_comments(char *secret)
 {
-	int undercover_index;
+	int index;
 
-	for (undercover_index = 0; secret[undercover_index] != '\0'; undercover_index++)
-		if (secret[undercover_index] == '#' && (!undercover_index || secret[undercover_index - 1] == ''))
+	for (index = 0; secret[index] != '\0'; index++)
+		if (secret[index] == '#' && (!_index || secret[cover_index - 1] == ''))
 		{
-			secret[undercover_index] = '\0';
+			secret[cover_index] = '\0';
 			break;
 		}
 }
