@@ -18,5 +18,9 @@ int simple_shell_02(void);
 ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream);
 int main(int argc, char *argv[]);
 
+/* simple_shell_0_2_1.c */
+void tokenizeInput(char *input, char *args[], int *arg_count);
+int simple_shell_0_2_1(void);
+
 #endif /* SHELL_H */
 
