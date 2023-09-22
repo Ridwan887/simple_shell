@@ -10,9 +10,13 @@
 
 #define MAX_INPUT_SIZE 1024
 
-// Function declarations
+/** Function declarations */
 int simple_shell_01(void);
 int simple_shell_02(void);
+
+/* Function prototypes */
+int execute_command(char *command);
+int find_command_path(char *command, char *path);
 
 /* shell_buffer.c */
 ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream);
@@ -26,8 +30,8 @@ int simple_shell_0_2_1(void);
 int read_user_input(char *input, size_t input_length);
 int parse_input(char *input, char *args[]);
 int simple_shell_041(void);
-int execute_command(char *command)
-int main(void)
+int execute_command(char *command);
+int main(void);
 
 #endif /* SHELL_H */
 
