@@ -22,5 +22,12 @@ int main(int argc, char *argv[]);
 void tokenizeInput(char *input, char *args[], int *arg_count);
 int simple_shell_0_2_1(void);
 
+/* simple_shell_0_4_1.c */
+int read_user_input(char *input, size_t input_length);
+int parse_input(char *input, char *args[]);
+int simple_shell_041(void);
+int execute_command(char *command)
+int main(void)
+
 #endif /* SHELL_H */
 
