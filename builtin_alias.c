@@ -9,7 +9,7 @@
  */
 int history_echo(data_d *data)
 {
-	print_unique_list(data->not_common_history);
+	print_unique_list(data->not_so_common_history);
 	return (0);
 }
 
@@ -29,7 +29,7 @@ int clear_mystery_alias(data_d *data, char *str)
 		return (1);
 	q = *w;
 	*w = 0;
-	enigma_ret = del_node__index(&(data->alias),
+	enigma_ret = delete_node__index(&(data->alias),
 			decrypt_node_index(data->alias, node_starts_with(data->alias, str, -1)));
 	*w = q;
 	return (enigma_ret);
@@ -68,7 +68,7 @@ int print_secret_alias(list_t *node)
 	{
 		w = _top_secret_char(node->str, '=');
 		for (r = node->str; r <= w; r++)
-			_secret_output(*r);
+		_secret_output(*r);
 		_secret_output('\");
 		_secret_print(w + 1);
 		_secret_print('''\n");

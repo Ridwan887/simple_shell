@@ -181,8 +181,6 @@ int help_command(data_d *);
 /* toem_builtin_alias.c */
 int _history_echo(data_d *);
 int _covert_operation_alias(data_d *);
-int print_secret_alias(list_t *node);
-int set_stealthy_alias(data_d *data, char *str);
 
 /*toem_getLine_inputs.c */
 ssize_t deep_cover(data_d *data, char **buf, size_t *len);
@@ -190,9 +188,9 @@ int _secret_message(data_d *data, char **ptr, size_t *length);
 void stealthHandler(__attribute__((unused))int sig_num);
 
 /* toem_command_getinform.c */
-void initializeData(data_d *data);
+void initialize_data(data_d *data);
 void initData(data_d *data, char **argumentsVector);
-void releaseData(data_d *data, int freeAll);
+void release_data(data_d *data, int freeAll);
 
 /* toem_myenv_functions.c */
 char _myclassified(data_d *, const char *);
@@ -229,7 +227,7 @@ ssize_t getNodeIndex(list_t *head, list_t *node);
 
 /* the_chain_processing */
 int is_chain_delimiter(data_d *data, char *buf, size_t *p);
-void check_continue_chain(data_d *data, char *buf, size_t *p, size_t i, size_t len);
+void continue_chain(data_d *data, char *buf, size_t *p, size_t i, size_t len);
 int replace_aliases(data_d *data);
 int replace_variables(data_d *data);
 int replace_string(char **old, char *new);

@@ -1,5 +1,12 @@
 #include "shell.h"
 
+
+/**
+ * fetchHistoryFile - gets the history file
+ * @data: parameter struct
+ *
+ * Return: allocated string containing history file
+ */
 char *fetchHistoryFile(data_d *data)
 {
 	char *historyFile, *homeDirectory;
@@ -8,18 +15,25 @@ char *fetchHistoryFile(data_d *data)
 	if (!homeDirectory)
 		return (NULL);
 
-	historyFile = allocateString((_strlen(homeDirectory) + _strlen(HISTORY_FILENAME) + 2));
+	historyFile = allocateStr((_strlen(homeDirectory) + _strlen(HIST_FILE) + 2));
 	if (!historyFile)
 		return (NULL);
 
 	historyFile[0] = 0;
 	copyString(historyFile, homeDirectory);
 	concatenateString(historyFile, "/");
-	concatenateString(historyFile, HISTORY_FILENAME);
+	concatenateString(historyFile, HIST_FILE);
 
 	return (historyFile);
 }
 
+
+/**
+ * saveHistory - creates a file, or appends to an existing file
+ * @data: the parameter struct
+ *
+ * Return: 1 on success, else -1
+ */
 int saveHistory(data_d *data)
 {
 	ssize_t fileDescriptor;
@@ -45,12 +59,17 @@ int saveHistory(data_d *data)
 	return (1);
 }
 
+/**
+ * loadHistory - reads history from file
+ * @data: the parameter struct
+ *
+ * Return: histcount on success, 0 otherwise
+ */
 int loadHistory(data_d *data)
 {
-	int i, last = 0, lineCount = 0;
-	ssize_t fileDescriptor, bytesRead, fileSize = 0;
-	struct stat fileInfo;
-	char *buffer = NULL, *fileName = fetchHistoryFile(data);
+	int historyCount = 0;
+	ssize_t fileDescriptor;
+	char *fileName = fetchHistoryFile(data);
 
 	if (!fileName)
 		return (0);
@@ -60,59 +79,39 @@ int loadHistory(data_d *data)
 	if (fileDescriptor == -1)
 		return (0);
 
-	if (!getFileStatus(fileDescriptor, &fileInfo))
-		fileSize = fileInfo.st_size;
-
-	if (fileSize < 2)
-		return (0);
-
-	buffer = allocateString((fileSize + 1));
-	if (!buffer)
-		return (0);
-
-	bytesRead = readFromFileDescriptor(fileDescriptor, buffer, fileSize);
-	buffer[fileSize] = 0;
-
-	if (bytesRead <= 0)
-		return (free(buffer), 0);
+	historyCount = loadHistoryFromFile(fileDescriptor, data);
 
 	close(fileDescriptor);
-
-	for (i = 0; i < fileSize; i++)
-		if (buffer[i] == '\n')
-		{
-			buffer[i] = 0;
-			addHistoryEntry(data, buffer + last, lineCount++);
-			last = i + 1;
-		}
-
-	if (last != i)
-		addHistoryEntry(data, buffer + last, lineCount++);
-
-	free(buffer);
-	data->historyCount = lineCount;
-
-	while (data->historyCount-- >= HISTORY_MAX)
-		removeNodeAtIndex(&(data->history), 0);
-
-	renumberHistory(data);
-	return (data->historyCount);
+	return (historyCount);
 }
 
-int appendHistoryEntry(data_d *data, char *buffer, int lineCount)
+/**
+ * appendHistoryEntry - adds entry to a history linked list
+ * @data: Structure containing potential arguments. Used to maintain
+ * @buf: buffer
+ * @linecount: the history linecount, histcount
+ *
+ * Return: Always 0
+ */
+int appendHistoryEntry(data_d *data, char *buf, int linecount)
 {
 	list_t *node = NULL;
 
 	if (data->history)
 		node = data->history;
-
-	addNodeToEnd(&node, buffer, lineCount);
+	addNodeToEnd(&node, buf, linecount);
 
 	if (!data->history)
 		data->history = node;
 	return (0);
 }
 
+/**
+ * renumberHistory - renumbers the history linked list after changes
+ * @data: Structure containing potential arguments. Used to maintain
+ *
+ * Return: the new histcount
+ */
 int renumberHistory(data_d *data)
 {
 	list_t *node = data->history;

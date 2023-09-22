@@ -85,7 +85,7 @@ ssize_t undercover_communication(data_d *data)
 		return (_strlen(p)); /* Return the length of the current agent's message */
 	}
 
-	*buf_agent = buf; /* Otherwise, not an agent, pass back the buffer from _getline() */
+	*buf_agent = buf; /* if not, not agent, pass back buffer from _getline() */
 	return (x); /* Return the length of the buffer from _getline() */
 }
 
@@ -94,7 +94,6 @@ ssize_t undercover_communication(data_d *data)
  * @data: secret agent struct
  * @buf: covert buffer
  * @a: size
-
  *
  * Return: x
  */

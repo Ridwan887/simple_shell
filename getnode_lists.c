@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * prependToList - adds a node to the start of the list
+ * @start: address of pointer to head node
+ * @text: str field of node
+ * @index: node index used by history
+ *
+ * Return: size of list
+ */
 list_t *prependToList(list_t **start, const char *text, int index)
 {
 	list_t *newStart;
@@ -24,6 +32,14 @@ list_t *prependToList(list_t **start, const char *text, int index)
 	return (newStart);
 }
 
+/**
+ * appendToTail - adds a node to the end of the list
+ * @start: address of pointer to start of node
+ * @text: text field of node
+ * @index: node index used by history
+ *
+ * Return: size of list
+ */
 list_t *appendToTail(list_t **start, const char *text, int index)
 {
 	list_t *newNode, *node;
@@ -60,6 +76,12 @@ list_t *appendToTail(list_t **start, const char *text, int index)
 	return (newNode);
 }
 
+/**
+ * printStringList - prints only the str element of a list_t linked list
+ * @list: pointer to first node list
+ *
+ * Return: size of list
+ */
 size_t printStringList(const list_t *list)
 {
 	size_t count = 0;
@@ -74,6 +96,13 @@ size_t printStringList(const list_t *list)
 	return (count);
 }
 
+/**
+ * removeNodeAtIndex - deletes node at given index
+ * @start: address of pointer to first node
+ * @index: index of node to delete
+ *
+ * Return: 1 on success, 0 on failure
+ */
 int removeNodeAtIndex(list_t **start, unsigned int index)
 {
 	list_t *node, *prevNode;
@@ -107,6 +136,12 @@ int removeNodeAtIndex(list_t **start, unsigned int index)
 	return (0);
 }
 
+/**
+ * freeStringList - frees all nodes of a list
+ * @start: address of pointer to head node
+ *
+ * Return: void
+ */
 void freeStringList(list_t **start)
 {
 	list_t *node, *nextNode, *listStart;

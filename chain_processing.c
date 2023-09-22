@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * is_chain_delimiter - test if the current character in buffer is a chain delimiter
+ * is_chain_delimiter - test the current character in buffer is a chain delim
  * @data: the parameter struct
  * @buf: the character buffer
  * @p: address of the current position in buf
@@ -36,7 +36,7 @@ int is_chain_delimiter(data_d *data, char *buf, size_t *p)
 }
 
 /**
- * check_continue_chain - checks if we should continue chaining based on the last status
+ * continue_chain - checks continue chaining based on the last status
  * @data: the parameter struct
 
  * @buf: the character buffer
@@ -46,7 +46,7 @@ int is_chain_delimiter(data_d *data, char *buf, size_t *p)
  *
  * Return: Void
  */
-void check_continue_chain(data_d *data, char *buf, size_t *p, size_t i, size_t len)
+void continue_chain(data_d *data, char *buf, size_t *p, size_t i, size_t len)
 {
 	size_t j = *p;
 

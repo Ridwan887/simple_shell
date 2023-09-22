@@ -9,17 +9,15 @@
  */
 int isExecutableCommand(data_d *data, char *path)
 {
-    struct stat st;
-
-    (void)data;
-    if (!path || stat(path, &st))
-        return (0);
-
-    if (st.st_mode & S_IFREG)
-    {
-        return (1);
-    }
-    return (0);
+	struct stat st;
+	(void)data;
+	if (!path || stat(path, &st))
+		return (0);
+	if (st.st_mode & S_IFREG)
+	{
+		return (1);
+	}
+	return (0);
 }
 
 /**
@@ -32,14 +30,14 @@ int isExecutableCommand(data_d *data, char *path)
  */
 char *duplicateCharacters(char *pathStr, int start, int stop)
 {
-    static char buffer[1024];
-    int i = 0, k = 0;
+	static char buffer[1024];
+	int g = 0, w = 0;
 
-    for (k = 0, i = start; i < stop; i++)
-        if (pathStr[i] != ':')
-            buffer[k++] = pathStr[i];
-    buffer[k] = 0;
-    return (buffer);
+	for (w = 0, g = start; g < stop; g++)
+		if (pathStr[g] != ':')
+			buffer[w++] = pathStr[g];
+	buffer[w] = 0;
+	return (buffer);
 }
 
 /**
@@ -52,35 +50,35 @@ char *duplicateCharacters(char *pathStr, int start, int stop)
  */
 char *findCommandPath(data_d *data, char *pathStr, char *command)
 {
-    int i = 0, currentPos = 0;
-    char *path;
+	int g = 0, currentPos = 0;
+	char *path;
 
-    if (!pathStr)
-        return (NULL);
-    if ((_strlen(command) > 2) && starts_with(command, "./"))
-    {
-        if (isExecutableCommand(data, command))
-            return (command);
-    }
-    while (1)
-    {
-        if (!pathStr[i] || pathStr[i] == ':')
-        {
-            path = duplicateCharacters(pathStr, currentPos, i);
-            if (!*path)
-                _strcat(path, command);
-            else
-            {
-                _strcat(path, "/");
-                _strcat(path, command);
-            }
-            if (isExecutableCommand(data, path))
-                return (path);
-            if (!pathStr[i])
-                break;
-            currentPos = i;
-        }
-        i++;
-    }
-    return (NULL);
+	if (!pathStr)
+		return (NULL);
+	if ((_strlen(command) > 2) && starts_with(command, "./"))
+	{
+		if (isExecutableCommand(data, command))
+			return (command);
+	}
+	while (1)
+	{
+		if (!pathStr[g] || pathStr[g] == ':')
+		{
+			path = duplicateCharacters(pathStr, currentPos, g);
+			if (!*path)
+				_strcat(path, command);
+			else
+			{
+				_strcat(path, "/");
+				_strcat(path, command);
+			}
+			if (isExecutableCommand(data, path))
+				return (path);
+			if (!pathStr[g])
+				break;
+			currentPos = g;
+		}
+		g++;
+	}
+	return (NULL);
 }
