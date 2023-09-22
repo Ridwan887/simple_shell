@@ -1,72 +1,72 @@
 #include "shell.h"
 
 /**
- * communicative - returns  true if shell is communicative mode
- * @data: struct address
+ * communicative - Returns true if the shell is in communicative mode.
+ * @data: Pointer to a data_d structure.
  *
- * Return:1 if communicative mode, 0 otherwise.
+ * Return: 1 if in communicative mode, 0 otherwise.
  */
 int communicative(data_d *data)
 {
-	return (isatty(STDIN_FILENO) && data->readfd = 2);
+    return (isatty(STDIN_FILENO) && data->readfd == 2);
 }
 
 /**
- * is_delimiterChars - checks if character is a delimiter
- * @c: the char to check
- * @delimiterChars: the delimiter characters
- * Return: 1 if true, 0 if false
+ * is_delimiterChars - Checks if a character is a delimiter.
+ * @c: The character to check.
+ * @delimiterChars: A string containing delimiter characters.
+ * 
+ * Return: 1 if the character is a delimiter, 0 otherwise.
  */
 int is_delimiterChars(char c, char *delimiterChars)
 {
-	while (*delimiterChars)
-		if (*delimiterChars++ == c)
-			return (1);
-	return (0);
+    while (*delimiterChars) {
+        if (*delimiterChars == c) {
+            return 1;
+        }
+        delimiterChars++;
+    }
+    return 0;
 }
 
 /**
- * _byte - checks for alphabetic character
- * @c: The character to input
- * Return: 1 if c is alphabetic, 0 otherwise
+ * is_alpha - Checks if a character is alphabetic.
+ * @c: The character to check.
+ * 
+ * Return: 1 if the character is alphabetic, 0 otherwise.
  */
-int _byte(int c)
+int is_alpha(int c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-
-		return (0);
+    return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
 /**
- * a_prompt - converts a string to an integar
- * @s: the string to convert
- * Return: 0 if no numbers in string, converted number otherwise
+ * a_prompt - Converts a string to an integer.
+ * @s: The string to convert.
+ * 
+ * Return: The converted integer, or 0 if no numbers in the string.
  */
 int a_prompt(char *s)
 {
-	int g, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+    int g, sign = 1, flag = 0, output = 0;
 
-	for (g = 0; s[g] != '\0' && flag != 2; i++)
-	{
-		if (s[g] == '-')
-			sign *= -1;
+    for (g = 0; s[g] != '\0' && flag != 2; g++)
+    {
+        if (s[g] == '-')
+        {
+            sign *= -1;
+        }
+        else if (s[g] >= '0' && s[g] <= '9')
+        {
+            flag = 1;
+            output *= 10;
+            output += (s[g] - '0');
+        }
+        else if (flag == 1)
+        {
+            flag = 2;
+        }
+    }
 
-		if (s[g] >= '0' && s[g] <= '9')
-		{
-			flag = 1;
-			result *= 10;
-			result += (s[g] - '0');
-		}
-		else if (flag == 1)
-			flag = 2;
-	}
-
-	if (sign == -1)
-		output = -result;
-	else
-		output = result;
-
-	return (output);
+    return (sign * output);
 }
