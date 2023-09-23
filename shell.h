@@ -40,5 +40,12 @@ void execute_command(char *command);
 int read_user_input(char *input, size_t input_length);
 int main(void);
 
+/* args.c */
+void print_prompt(void);
+int read_user_input(char *input, size_t input_length);
+int tokenize_input(char *input, char *args[]);
+int execute_command(char *args[]);
+int simple_shell_02(void);
+
 #endif /* SHELL_H */
 
