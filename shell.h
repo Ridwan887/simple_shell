@@ -33,5 +33,12 @@ int simple_shell_041(void);
 int execute_command(char *command);
 int main(void);
 
+/* alias.c */
+void print_aliases(void);
+struct Alias *find_alias(char *name);
+void execute_command(char *command);
+int read_user_input(char *input, size_t input_length);
+int main(void);
+
 #endif /* SHELL_H */
 

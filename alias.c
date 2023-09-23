@@ -6,24 +6,13 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-/** Define environ if not available */
-extern char **environ;
-
 #define MAX_INPUT_SIZE 1024
 #define MAX_ALIAS_COUNT 100
 
-/** Define a structure to hold alias information */
-struct Alias
-{
-	char *name;
-	char *value;
-};
-
-// Declare an array to store aliases
+/** Declare an array to store aliases */
 struct Alias aliases[MAX_ALIAS_COUNT];
-int alias_count;
 
-// Function prototypes
+/** Function prototypes */
 
 /**
  * print_aliases - Print all stored aliases.
@@ -36,7 +25,7 @@ void print_aliases(void);
  * @name: The name of the alias to find.
  *
  * Return: A pointer to the alias structure, or NULL if not found.
- * Description: Searches for an alias with the given name in the 'aliases' array.
+ * Description: Searches for an alias with given name in the 'aliases' array.
  */
 struct Alias *find_alias(char *name);
 
@@ -53,7 +42,7 @@ void execute_command(char *command);
  * @input_length: The length of the input string buffer.
  *
  * Return: 1 if successful, 0 on Ctrl+D (end of file), or -1 on error.
- * Description: Reads user input from stdin and stores it in the 'input' buffer.
+ * Description: Reads user input from stdin and stores in the 'input' buffer.
  */
 int read_user_input(char *input, size_t input_length);
 
@@ -65,6 +54,7 @@ int read_user_input(char *input, size_t input_length);
 void print_aliases(void)
 {
 	int i;
+
 	for (i = 0; i < alias_count; i++)
 	{
 		printf("%s='%s'\n", aliases[i].name, aliases[i].value);
@@ -76,11 +66,12 @@ void print_aliases(void)
  * @name: The name of the alias to find.
  *
  * Return: A pointer to the alias structure, or NULL if not found.
- * Description: Searches for an alias with the given name in the 'aliases' array.
+ * Description: Searches for alias with the given name in the 'aliases' array.
  */
 struct Alias *find_alias(char *name)
 {
 	int i;
+
 	for (i = 0; i < alias_count; i++)
 	{
 		if (strcmp(aliases[i].name, name) == 0)
@@ -123,6 +114,7 @@ void execute_command(char *command)
 	if (arg_count == 1 && strcmp(args[0], "env") == 0)
 	{
 		char **env = environ;
+
 		while (*env != NULL)
 		{
 			printf("%s\n", *env);
@@ -138,7 +130,9 @@ void execute_command(char *command)
 	while (token != NULL)
 	{
 		char command_path[1024];
+
 		snprintf(command_path, sizeof(command_path), "%s/%s", token, args[0]);
+
 		if (access(command_path, X_OK) == 0)
 		{
 			command_found = 1;
@@ -151,7 +145,7 @@ void execute_command(char *command)
 	if (!command_found)
 	{
 		printf("Command not found: %s\n", args[0]);
-		return; // Skip fork if command doesn't exist
+		return; /** Skip fork if command doesn't exist */
 	}
 
 	if (pid == -1)
@@ -171,6 +165,7 @@ void execute_command(char *command)
 	else
 	{
 		int status;
+
 		if (wait(&status) == -1)
 		{
 			perror("wait");
@@ -189,7 +184,7 @@ void execute_command(char *command)
  * @input_length: The length of the input string buffer.
  *
  * Return: 1 if successful, 0 on Ctrl+D (end of file), or -1 on error.
- * Description: Reads user input from stdin and stores it in the 'input' buffer.
+ * Description: Reads user input from stdin and stores it the 'input' buffer.
  */
 int read_user_input(char *input, size_t input_length)
 {
@@ -199,16 +194,18 @@ int read_user_input(char *input, size_t input_length)
 	}
 
 	size_t input_len = strlen(input);
+
 	if (input_len > 0 && input[input_len - 1] == '\n')
 	{
 		input[input_len - 1] = '\0';
 	}
 
-	return (1); // Successful input
+	return (1);
 }
 
 /**
  * main - Reads main functions
+ * Return: 0 if successful
  */
 int main(void)
 {
@@ -217,13 +214,13 @@ int main(void)
 
 	while (1)
 	{
-		printf("shell$ "); // Display the prompt
+		printf("shell$ ");
 		if (read_user_input(input, sizeof(input)) == 0)
 		{
 			printf("\n");
 			break;
 		}
 	}
-	return 0;
+	return (0);
 }
 
